@@ -207,11 +207,11 @@ public class Seed : MonoBehaviour
 
         if (size != 0)
         {
-            for(int i = 0; i<2; i++)
+            for (int i = 0; i < 2; i++)
             {
-                int dir = 0 ;
+                int dir = 0;
                 if (i == 0) dir = -1;
-                if (i == 1) dir =  1;
+                if (i == 1) dir = 1;
 
                 int zdir = Random.Range(-1, 1);
 
@@ -221,9 +221,9 @@ public class Seed : MonoBehaviour
                 {
                     tempVerts.Add(
                         new Vector3(
-                            Verts[j].x + dir*xs,
+                            Verts[j].x + dir * xs,
                             Verts[j].y + ys,
-                            Verts[j].z + zdir*zs
+                            Verts[j].z + zdir * zs
                         )
                     );
                 }
@@ -231,14 +231,85 @@ public class Seed : MonoBehaviour
 
             }
 
+            int beg = Verts.Count - Mathf.RoundToInt(3 * Mathf.Pow(2, size));
+            int end = Verts.Count;
+            int baseTris = (end - beg) / 3;
+
             Verts.AddRange(tempVerts);
+
+            for (int i = 0; i < baseTris; i++)
+            {
+                makePrism(beg + i * 3, beg + 1 + i * 3, beg + 2 + i * 3, (beg + i * 3) + baseTris * 3, (beg + 1 + i * 3) + baseTris * 3, (beg + 2 + i * 3) + baseTris * 3);
+                makePrism(beg + i * 3, beg + 1 + i * 3, beg + 2 + i * 3, (beg + i * 3) + baseTris * 6, (beg + 1 + i * 3) + baseTris * 6, (beg + 2 + i * 3) + baseTris * 6);
+            }
             //SYSTEMATICALLY FORM TRIS FUUUUUUUUUUUUCK
+        }
+        else
+        {
+            //Wonky ass first layer...
+            //top ring is 1 3 5 (l r b )
+            for (int i = 0; i < 2; i++)
+            {
+                int dir = 0;
+                if (i == 0) dir = -1;
+                if (i == 1) dir = 1;
+
+                int zdir = Random.Range(-1, 1);
+
+                float len = 3 * Mathf.Pow(2, size);
+
+                
+                    tempVerts.Add(
+                            new Vector3(
+                                Verts[1].x + dir * xs,
+                                Verts[1].y + ys,
+                                Verts[1].z + zdir * zs
+                            )
+                    );
+
+                    tempVerts.Add(
+                            new Vector3(
+                                Verts[3].x + dir * xs,
+                                Verts[3].y + ys,
+                                Verts[3].z + zdir * zs
+                            )
+                        );
+
+                    tempVerts.Add(
+                            new Vector3(
+                                Verts[5].x + dir * xs,
+                                Verts[5].y + ys,
+                                Verts[5].z + zdir * zs
+                            )
+                        );
+
+
+            }
         }
 
 
+        mesh.Clear();
+
+        mesh.vertices = Verts.ToArray();
+        mesh.triangles = Tris.ToArray();
+        mesh.RecalculateNormals();
+        MF.mesh = mesh;
+
+        size += 1;
 
 
-            size += 1;
+
+        void makePrism(int a, int b, int c,    int x, int y, int z)
+        {
+            addTri(a, x, b);
+            addTri(x, y, b);
+            addTri(x, a, c);
+            addTri(c, z, x);
+            addTri(z, c, b);
+            addTri(z, b, y);
+
+            addTri(x, z, y);
+        }
     }
     void CheckGerminate()
     {
@@ -274,8 +345,8 @@ public class Seed : MonoBehaviour
             addTri(1, 0, 4);
             addTri(4, 5, 1);
             addTri(5, 4, 2);
-            //TOP - OPT?
             addTri(5, 2, 3);
+            //TOP - OPT?
             addTri(1, 5, 3);
           
 
