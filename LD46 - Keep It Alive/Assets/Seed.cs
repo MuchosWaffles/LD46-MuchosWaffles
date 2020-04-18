@@ -22,6 +22,7 @@ public class Seed : MonoBehaviour
     public float sunlightReq; //How long does sunlight bar drop  (percent per second)
     public float gestationPeriod; //How long till seeds/fruit are ripe (seconds)
     public float damageRate; //how much damage per second?  (dmg per second)
+    public int maxGrowths;//When is too big? (Number of growth spurts b4 adulthood)
 
     float health     = 100; //Total health - drops when something is drained, heals only when all is good
     float water      =   0;//amount of water          0-100
@@ -71,7 +72,7 @@ public class Seed : MonoBehaviour
     void Update()
     {
         CheckGerminate(); //good
-        CheckGrowth();    //NOPE
+        CheckGrowth();    //Meh, needs leaves
         CheckWater();     //good
         CheckSun();       //good
         CheckPollination();  //NOPE
@@ -86,6 +87,15 @@ public class Seed : MonoBehaviour
         healthBar.value = health / 100;
         waterBar.value =  water / 100;
         sunBar.value = sun / 100;
+
+        if (health <= 0)
+        {
+            GameObject.Destroy(gameObject);
+        }
+        if(water>50 && sun > 50)
+        {
+            health += Time.deltaTime * damageRate/2;
+        }
     }
     void CheckPollination()
     {
@@ -149,13 +159,13 @@ public class Seed : MonoBehaviour
     }
     void CheckGrowth()
     {
-        if (size >= 10)
+        if (size >= maxGrowths)
         {
-            size = 10;
+            size = maxGrowths;
             adult = true;
         }
        
-        if (!adult && water>thirstRate && germinated)
+        if (!adult && water>thirstRate && sun>sunlightReq && germinated)
         {
             if (GrowthTimer >= growthPeriod)
             {
@@ -201,29 +211,37 @@ public class Seed : MonoBehaviour
         //keep track of init size, last three verts will always be top ring except for first time.
 
         List<Vector3> tempVerts = new List<Vector3>();
-        float xs = transform.localScale.x * 0.25f;
+        float xs = transform.localScale.x;
         float ys = transform.localScale.y;
-        float zs = transform.localScale.z * 0.25f;
-
+        float zs = transform.localScale.z;
+        int scale = 1;
         if (size != 0)
         {
             for (int i = 0; i < 2; i++)
             {
                 int dir = 0;
-                if (i == 0) dir = -1;
-                if (i == 1) dir = 1;
+                if (i == 0) dir = -scale;
+                if (i == 1) dir = scale;
 
-                int zdir = Random.Range(-1, 1);
+               
 
                 float len = 3 * Mathf.Pow(2, size);
-
+                float rHeight = Random.Range(.25f, 1.25f);
+                float rZ = Random.Range(.25f, 1.25f);
+                float rX = Random.Range(.25f, 1.25f);
                 for (int j = Verts.Count - Mathf.RoundToInt(len); j < Verts.Count; j++)
                 {
+                    if ((Verts.Count - j) % 3 == 0)
+                    {
+                        rZ = Random.Range(-2.5f, 2.5f);
+                        rHeight = Random.Range(.25f, 1.25f);
+                        rX = Random.Range(.25f, 1.25f);
+                    }
                     tempVerts.Add(
                         new Vector3(
-                            Verts[j].x + dir * xs,
-                            Verts[j].y + ys,
-                            Verts[j].z + zdir * zs
+                            Verts[j].x + dir * xs * rX,
+                            Verts[j].y + ys*rHeight,
+                            Verts[j].z + zs * rZ
                         )
                     );
                 }
@@ -251,10 +269,10 @@ public class Seed : MonoBehaviour
             for (int i = 0; i < 2; i++)
             {
                 int dir = 0;
-                if (i == 0) dir = -1;
-                if (i == 1) dir = 1;
+                if (i == 0) dir = -scale;
+                if (i == 1) dir = scale;
 
-                int zdir = Random.Range(-1, 1);
+                int zdir = Random.Range(-scale, scale);
 
                 float len = 3 * Mathf.Pow(2, size);
 
@@ -285,6 +303,15 @@ public class Seed : MonoBehaviour
 
 
             }
+
+            
+
+            Verts.AddRange(tempVerts);
+
+
+            makePrism(1, 3, 5, 6, 7,   8);
+            makePrism(1, 3, 5, 9, 10, 11);
+            
         }
 
 
@@ -366,10 +393,11 @@ public class Seed : MonoBehaviour
     {
         //Fix Values
         germWaterReq    = Random.Range( 10, 30);
-        thirstRate      = Random.Range(.5f,  2);
-        sunlightReq     = Random.Range(.5f,  2);
+        thirstRate      = Random.Range(.5f,  4);
+        sunlightReq     = Random.Range(.5f,  3);
         gestationPeriod = Random.Range( 10, 25);
-        damageRate      = Random.Range(  1, 10);
+        damageRate      = Random.Range(  4, 10);
+        maxGrowths      = Random.Range(  2,  5);
     }
     void FacePlanet()
     {
