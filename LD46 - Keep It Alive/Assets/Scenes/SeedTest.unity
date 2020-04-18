@@ -330,6 +330,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a91a0b543c8e154db65f51b63b2fca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomized: 0
+  germWaterReq: 0
+  thirstRate: 0
+  sunlightReq: 0
+  gestationPeriod: 1
+  damageRate: 0
 --- !u!136 &1535668958
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -401,7 +407,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1535668956}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -2.16, z: -0.93}
+  m_LocalPosition: {x: -0.06, y: -2.19, z: -0.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
