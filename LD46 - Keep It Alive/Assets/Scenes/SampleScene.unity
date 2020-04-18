@@ -164,6 +164,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 931868141728683165, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 931868141728683165, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8346783866110996376, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -226,7 +234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: thirstRate
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: damageRate
@@ -418,6 +426,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 931868141728683165, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 931868141728683165, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8346783866110996376, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -480,7 +496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: thirstRate
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: damageRate
@@ -647,6 +663,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 931868141728683165, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 931868141728683165, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8346783866110996376, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -709,7 +733,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: thirstRate
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: damageRate
@@ -921,6 +945,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 931868141728683165, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 931868141728683165, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8346783866110996376, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -983,7 +1015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: thirstRate
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: damageRate

@@ -7,7 +7,9 @@ public class Seed : MonoBehaviour
     //public int type; // Type of plant, to be looked up from a table?
     public Transform planet;//planet duh...
     public Slider healthBar;
-     GameObject player;
+    public Slider waterBar;
+
+    GameObject player;
 
     public bool randomized; //Set all public vars below to random range for a give type.
 
@@ -55,15 +57,16 @@ public class Seed : MonoBehaviour
         CheckWater();
         CheckSun();
         CheckPollination();
-        UpdateHealth();
+        UpdateBars();
 
 
         FacePlanet();
     }
 
-    void UpdateHealth()
+    void UpdateBars()
     {
         healthBar.value = health / 100;
+        waterBar.value =  water / 100;
     }
     void CheckPollination()
     {
