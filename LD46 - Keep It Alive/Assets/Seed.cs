@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Seed : MonoBehaviour
 {
     //public int type; // Type of plant, to be looked up from a table?
     public Transform planet;//planet duh...
-
+    public Slider healthBar;
 
     public bool randomized; //Set all public vars below to random range for a give type.
 
@@ -52,12 +52,16 @@ public class Seed : MonoBehaviour
         CheckWater();
         CheckSun();
         CheckPollination();
-
+        UpdateHealth();
 
 
         FacePlanet();
     }
 
+    void UpdateHealth()
+    {
+        healthBar.value = health / 100;
+    }
     void CheckPollination()
     {
         if (polinated)
@@ -199,7 +203,8 @@ public class Seed : MonoBehaviour
         if (other.CompareTag("Water"))
         {
             water += 20* Time.deltaTime;
-            Debug.Log(water);
+            if (water > 100) water = 100;
+            
         }
         
     }
