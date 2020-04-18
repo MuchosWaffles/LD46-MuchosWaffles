@@ -7,7 +7,7 @@ public class CharController : MonoBehaviour
     Rigidbody rb;
     public Transform mesh;
     public Rigidbody planet;
-    public float mouseSensitivity = 300f;
+   
     public float grav = -10;
     public float speed;
     void Start()
