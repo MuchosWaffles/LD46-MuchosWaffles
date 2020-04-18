@@ -30,6 +30,7 @@ public class Seed : MonoBehaviour
     //Meshy Components
     MeshRenderer MR;
     MeshFilter MF;
+   
     Mesh mesh;
     List<Vector3> Verts;
     List<int> Tris;
@@ -140,8 +141,8 @@ public class Seed : MonoBehaviour
             Verts.Add(new Vector3(xs, ys, 0));
 
             //Edge 3
-            Verts.Add(new Vector3(xs, 0, zs));
-            Verts.Add(new Vector3(xs, ys, zs));
+            Verts.Add(new Vector3(xs/2, 0, zs));
+            Verts.Add(new Vector3(xs/2, ys, zs));
 
 
             //ADDING TRIANGLES
@@ -163,7 +164,7 @@ public class Seed : MonoBehaviour
             mesh.triangles = Tris.ToArray();
             mesh.RecalculateNormals();
             MF.mesh = mesh;
-            
+          
             germinated = true;
         }
     }
@@ -189,5 +190,25 @@ public class Seed : MonoBehaviour
     void addTri(int a, int b, int c)
     {
         Tris.Add(a); Tris.Add(b); ; Tris.Add(c);
+    }
+
+
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Water"))
+        {
+            water += 20* Time.deltaTime;
+            Debug.Log(water);
+        }
+        
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), collision.collider);
+        }
     }
 }
