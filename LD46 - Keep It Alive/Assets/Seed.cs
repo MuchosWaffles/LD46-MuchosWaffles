@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Seed : MonoBehaviour
 {
+    public Material[] treeColor;
+    public GameObject Leaves;
+
+
     //public int type; // Type of plant, to be looked up from a table?
     public Transform planet;//planet duh...
     public Slider healthBar;
@@ -17,6 +21,7 @@ public class Seed : MonoBehaviour
 
     public bool randomized; //Set all public vars below to random range for a give type.
 
+    public int type; //Type of tree
     public float germWaterReq; //How much water till sprout
     public float thirstRate; //How  quickly does it get thirsty (percent per second)
     public float sunlightReq; //How long does sunlight bar drop  (percent per second)
@@ -92,9 +97,10 @@ public class Seed : MonoBehaviour
         {
             GameObject.Destroy(gameObject);
         }
-        if(water>50 && sun > 50)
+        if(water>75 && sun > 75)
         {
             health += Time.deltaTime * damageRate/2;
+            if (health > 100) health = 100;
         }
     }
     void CheckPollination()
@@ -311,6 +317,9 @@ public class Seed : MonoBehaviour
 
             makePrism(1, 3, 5, 6, 7,   8);
             makePrism(1, 3, 5, 9, 10, 11);
+
+
+            
             
         }
 
@@ -337,7 +346,37 @@ public class Seed : MonoBehaviour
 
             addTri(x, z, y);
         }
+        GrowLeaves();
     }
+    void GrowLeaves()
+    {
+        MeshFilter   LMF = Leaves.GetComponent<MeshFilter>();
+        MeshRenderer LMR = Leaves.GetComponent<MeshRenderer>();
+        Mesh LeafyBois = new Mesh();
+        LMR.material = treeColor[type];
+
+        List<Vector3> LVerts = new List<Vector3>();
+        List<int> LTris = new List<int>();
+        float leafSize = .5f;
+        for (int i = 0; i < size * 200; i++)
+        {
+            Vector3 bl = new Vector3(Random.Range(mesh.bounds.min.x, mesh.bounds.max.x), Random.Range(mesh.bounds.min.y+1.25f, mesh.bounds.max.y), Random.Range(mesh.bounds.min.z, mesh.bounds.max.z));
+            Vector3 br = new Vector3(bl.x + Random.Range(-leafSize, leafSize), bl.y + Random.Range(-leafSize, leafSize), bl.z + Random.Range(-leafSize, leafSize));
+            Vector3 tl = new Vector3(br.x + Random.Range(-leafSize, leafSize), br.y + Random.Range(-leafSize, leafSize), br.z + Random.Range(-leafSize, leafSize));
+            Vector3 tr = new Vector3(tl.x + Random.Range(-leafSize, leafSize), tl.y + Random.Range(-leafSize, leafSize), tl.z + Random.Range(-leafSize, leafSize));
+
+            LVerts.Add(bl); LVerts.Add(br); LVerts.Add(tl); LVerts.Add(tr);
+            LTris.Add(0+4*i); LTris.Add(1+4*i); LTris.Add(2+4*i); LTris.Add(2 + 4 *i); LTris.Add(1 + 4 *i); LTris.Add(3 + 4 *i);
+        }
+        LeafyBois.vertices = LVerts.ToArray();
+        LeafyBois.triangles = LTris.ToArray();
+        LMF.mesh = LeafyBois;
+        LeafyBois.RecalculateNormals();
+    }
+
+
+
+    
     void CheckGerminate()
     {
         if (!germinated && water >= germWaterReq)
@@ -349,7 +388,7 @@ public class Seed : MonoBehaviour
 
             //init scale dependant vars
             float xs = transform.localScale.x * 0.25f;
-            float ys = transform.localScale.y;
+            float ys = transform.localScale.y*2;
             float zs = transform.localScale.z * 0.25f;
             //Set up first verts????? tri prisms? = 6 pts & 6 tris & 3 rects
 
@@ -385,7 +424,7 @@ public class Seed : MonoBehaviour
             mesh.triangles = Tris.ToArray();
             mesh.RecalculateNormals();
             MF.mesh = mesh;
-          
+           // MR.material = treeColor[type];
             germinated = true;
         }
     }
@@ -393,11 +432,12 @@ public class Seed : MonoBehaviour
     {
         //Fix Values
         germWaterReq    = Random.Range( 10, 30);
-        thirstRate      = Random.Range(.5f,  4);
-        sunlightReq     = Random.Range(.5f,  3);
+        thirstRate      = Random.Range(1f,  4);
+        sunlightReq     = Random.Range(1f,  4);
         gestationPeriod = Random.Range( 10, 25);
         damageRate      = Random.Range(  4, 10);
         maxGrowths      = Random.Range(  2,  5);
+        type = Random.Range(0, treeColor.Length);
     }
     void FacePlanet()
     {
