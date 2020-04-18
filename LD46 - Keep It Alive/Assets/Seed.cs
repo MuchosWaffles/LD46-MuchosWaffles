@@ -29,6 +29,8 @@ public class Seed : MonoBehaviour
     float size       =   0; //Amount of growth        0-100
     
     float gestationTimer = 0;  //How long since pollination, checked against gestationPeriod
+    float growthPeriod = 5; //How long till growths (seconds)
+    float GrowthTimer = 0; //How long with water between growths 
 
     bool  polinated  = false; //Check if polinated
     bool  germinated = false; //Is germinated?
@@ -68,15 +70,15 @@ public class Seed : MonoBehaviour
   
     void Update()
     {
-        CheckGerminate();
-        CheckGrowth();
-        CheckWater();
-        CheckSun();
-        CheckPollination();
-        UpdateBars();
+        CheckGerminate(); //good
+        CheckGrowth();    //NOPE
+        CheckWater();     //good
+        CheckSun();       //good
+        CheckPollination();  //NOPE
+        UpdateBars();    //good
 
 
-        FacePlanet();
+        FacePlanet(); //good
     }
 
     void UpdateBars()
@@ -147,22 +149,96 @@ public class Seed : MonoBehaviour
     }
     void CheckGrowth()
     {
-        if (size >= 100)
+        if (size >= 10)
         {
-            size = 100;
+            size = 10;
             adult = true;
         }
-
+       
         if (!adult && water>thirstRate && germinated)
         {
-            Grow();
+            if (GrowthTimer >= growthPeriod)
+            {
+                GrowthTimer = 0;
+                Grow();
+            }
+            else
+            {
+                GrowthTimer += Time.deltaTime;
+            }
         }
     }
     void Grow()
     {
-        //GROW SHIT --- YIKES --- another all nighter to get this done?
+        /*GROW SHIT --- YIKES --- another all nighter to get this done?
         //--------------
-        size += 10 * Time.deltaTime;
+
+        //Steps. ? How do I want to grow these. WHAT ARE THESE?
+        //Are they trees, bushes, flowers, a random one of those? 
+        //what am i making, first?
+
+        //Trees, seem easy enough, branch outward semi-randomly
+
+        //Bushes, small trees with colored planes randomly thrown in. not easy to deal with imo
+
+        //flowers, meh, i'd rather have something that grows a lot.
+
+        //I think imma go with trees.
+
+
+        //Trees need leaves tho... halp.
+
+        //maybe leaves can be a bunch of random tris made out of a series of random points within a leafy range?
+        //might just look buggy tho
+
+        //2-3 branches at a time. all new verts can just be old verts moved around, like moving the rings not the individual verts.
+
+        //btw, 1,3,5 are the top ring front left, right, back
+        */
+
+        //STEP 1 adding new verts.
+
+        //keep track of init size, last three verts will always be top ring except for first time.
+
+        List<Vector3> tempVerts = new List<Vector3>();
+        float xs = transform.localScale.x * 0.25f;
+        float ys = transform.localScale.y;
+        float zs = transform.localScale.z * 0.25f;
+
+        if (size != 0)
+        {
+            for(int i = 0; i<2; i++)
+            {
+                int dir = 0 ;
+                if (i == 0) dir = -1;
+                if (i == 1) dir =  1;
+
+                int zdir = Random.Range(-1, 1);
+
+                float len = 3 * Mathf.Pow(2, size);
+
+                for (int j = Verts.Count - Mathf.RoundToInt(len); j < Verts.Count; j++)
+                {
+                    tempVerts.Add(
+                        new Vector3(
+                            Verts[j].x + dir*xs,
+                            Verts[j].y + ys,
+                            Verts[j].z + zdir*zs
+                        )
+                    );
+                }
+
+
+            }
+
+            Verts.AddRange(tempVerts);
+            //SYSTEMATICALLY FORM TRIS FUUUUUUUUUUUUCK
+        }
+
+
+
+
+            size += 1;
     }
     void CheckGerminate()
     {
