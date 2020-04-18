@@ -7,6 +7,7 @@ public class Seed : MonoBehaviour
     //public int type; // Type of plant, to be looked up from a table?
     public Transform planet;//planet duh...
     public Slider healthBar;
+     GameObject player;
 
     public bool randomized; //Set all public vars below to random range for a give type.
 
@@ -36,6 +37,8 @@ public class Seed : MonoBehaviour
     List<int> Tris;
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        Physics.IgnoreCollision(player.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
         Verts = new List<Vector3>();
         Tris = new List<int>();
         MR = gameObject.GetComponent<MeshRenderer>();
@@ -209,11 +212,5 @@ public class Seed : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), collision.collider);
-        }
-    }
+   
 }

@@ -34,14 +34,15 @@ public class CharController : MonoBehaviour
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             mesh.rotation =
-                Quaternion.FromToRotation(
-                    mesh.forward,
-                    ((Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward)).normalized
-                ) * mesh.rotation
-           ;
+                 Quaternion.Lerp(mesh.rotation, Quaternion.FromToRotation(
+            mesh.forward,
+            ((Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward)).normalized) * mesh.rotation,
+            .15f
+        );
             mesh.SetPositionAndRotation(mesh.position, Quaternion.FromToRotation(mesh.up,transform.up)*mesh.rotation);
         }
 
+       
         //MOVEMENT
         //Move position perp to rotation, or tangent to planet, ie, move in transform.right positions instead of Vector3.right... Local vs Global / Subjective v Objective...
         rb.MovePosition(rb.position + (Input.GetAxis("Horizontal") * speed * transform.right) + (Input.GetAxis("Vertical") * speed * transform.forward));

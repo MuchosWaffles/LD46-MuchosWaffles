@@ -232,6 +232,10 @@ PrefabInstance:
       propertyPath: damageRate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1421842526}
     - target: {fileID: 8373831259454031617, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -735,7 +739,7 @@ GameObject:
   - component: {fileID: 1242502432}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1008,7 +1012,7 @@ GameObject:
   - component: {fileID: 1421842532}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1037,7 +1041,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421842526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 37.87, z: 0}
+  m_LocalPosition: {x: 0, y: 25.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1242502429}
@@ -1059,8 +1063,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: 1242502429}
   planet: {fileID: 1598980328}
-  grav: -15
-  speed: 0.5
+  grav: -20
+  speed: 0.3
 --- !u!1 &1598980323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,13 +1394,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2126154644}
-  m_LocalRotation: {x: 0.17699888, y: 0, z: 0, w: 0.9842111}
+  m_LocalRotation: {x: 0.3479994, y: 0, z: 0, w: 0.93749475}
   m_LocalPosition: {x: 0, y: 0, z: 0.65000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 730315499}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 20.39, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 40.73, y: 0, z: 0}
 --- !u!199 &2126154646
 ParticleSystemRenderer:
   serializedVersion: 6
