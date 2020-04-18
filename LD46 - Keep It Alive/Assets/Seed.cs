@@ -8,8 +8,12 @@ public class Seed : MonoBehaviour
     public Transform planet;//planet duh...
     public Slider healthBar;
     public Slider waterBar;
+    public Slider sunBar;
 
     GameObject player;
+    public GameObject DirLight;
+    Vector3 dirLightDir;
+
 
     public bool randomized; //Set all public vars below to random range for a give type.
 
@@ -30,6 +34,8 @@ public class Seed : MonoBehaviour
     bool  germinated = false; //Is germinated?
     bool  adult      = false; //Is done growing?
 
+    bool touchingLantern = false;//lantern uses triggers instead of raycasts, so much be checked separate before removing sun...
+
     //Meshy Components
     MeshRenderer MR;
     MeshFilter MF;
@@ -39,6 +45,7 @@ public class Seed : MonoBehaviour
     List<int> Tris;
     void Start()
     {
+        
         player = GameObject.FindGameObjectWithTag("Player");
         Physics.IgnoreCollision(player.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
         Verts = new List<Vector3>();
@@ -47,6 +54,15 @@ public class Seed : MonoBehaviour
         MF = gameObject.GetComponent<MeshFilter>();
         
         if (randomized) randomizeAll();
+
+        float x;
+        float y;
+        float z;
+
+        y = Mathf.Sin(DirLight.transform.rotation.x);
+        x = Mathf.Sin(DirLight.transform.rotation.y) * Mathf.Cos(DirLight.transform.rotation.x);
+        z = Mathf.Cos(DirLight.transform.rotation.y) * Mathf.Cos(DirLight.transform.rotation.x);
+        dirLightDir = new Vector3(x, y, z);
     }
 
   
@@ -67,6 +83,7 @@ public class Seed : MonoBehaviour
     {
         healthBar.value = health / 100;
         waterBar.value =  water / 100;
+        sunBar.value = sun / 100;
     }
     void CheckPollination()
     {
@@ -106,6 +123,26 @@ public class Seed : MonoBehaviour
         if (germinated)
         {
             //HANDLE SUN by checking if light is on it (and how much)
+            //Use collider for point lights... raycast for directional
+            if(!Physics.Raycast(transform.position + transform.up, dirLightDir) || touchingLantern)
+            {
+                sun += Time.deltaTime * 20;
+                if (sun > 100) sun = 100;
+            }
+            else
+            {
+                
+                if (sun >= sunlightReq * Time.deltaTime)
+                {
+                    sun -= sunlightReq * Time.deltaTime;
+                }
+                else
+                {
+                    health -= damageRate * Time.deltaTime;
+                    sun = 0;
+                }
+            }
+            
         }
     }
     void CheckGrowth()
@@ -123,7 +160,7 @@ public class Seed : MonoBehaviour
     }
     void Grow()
     {
-        //GROW SHIT
+        //GROW SHIT --- YIKES --- another all nighter to get this done?
         //--------------
         size += 10 * Time.deltaTime;
     }
@@ -180,6 +217,7 @@ public class Seed : MonoBehaviour
     }
     void randomizeAll()
     {
+        //Fix Values
         germWaterReq    = Random.Range( 10, 30);
         thirstRate      = Random.Range(.5f,  2);
         sunlightReq     = Random.Range(.5f,  2);
@@ -212,8 +250,19 @@ public class Seed : MonoBehaviour
             if (water > 100) water = 100;
             
         }
-        
+
+        if (other.CompareTag("Sun"))
+        {
+            touchingLantern = true;
+        }
     }
 
-   
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Sun"))
+        {
+            touchingLantern = false;
+        }
+    }
+
 }

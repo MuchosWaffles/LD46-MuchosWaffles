@@ -172,6 +172,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7541220428834885823, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7541220428834885823, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8346783866110996376, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -244,6 +252,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1421842526}
+    - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: DirLight
+      value: 
+      objectReference: {fileID: 1265109870}
+    - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: sunlightReq
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8373831259454031617, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -434,6 +450,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7541220428834885823, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7541220428834885823, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8346783866110996376, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -501,6 +525,14 @@ PrefabInstance:
     - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: damageRate
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: DirLight
+      value: 
+      objectReference: {fileID: 1265109870}
+    - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: sunlightReq
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8373831259454031617, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: m_AnchorMax.x
@@ -671,6 +703,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7541220428834885823, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7541220428834885823, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8346783866110996376, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -738,6 +778,14 @@ PrefabInstance:
     - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: damageRate
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: DirLight
+      value: 
+      objectReference: {fileID: 1265109870}
+    - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: sunlightReq
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8373831259454031617, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: m_AnchorMax.x
@@ -870,13 +918,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265109870}
-  m_LocalRotation: {x: 0.4705739, y: 0.098074, z: 0.036161974, w: 0.8761472}
+  m_LocalRotation: {x: 0.4527922, y: 0.1613553, z: -0.08369939, w: 0.8728907}
   m_LocalPosition: {x: 0, y: 46.25, z: -7.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 8, y: 12, z: 0}
+  m_LocalEulerAnglesHint: {x: 54.834, y: 20.946, z: 0}
 --- !u!108 &1265109872
 Light:
   m_ObjectHideFlags: 0
@@ -953,6 +1001,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7541220428834885823, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7541220428834885823, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8346783866110996376, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1020,6 +1076,14 @@ PrefabInstance:
     - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: damageRate
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: DirLight
+      value: 
+      objectReference: {fileID: 1265109870}
+    - target: {fileID: 8346783866110996389, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
+      propertyPath: sunlightReq
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8373831259454031617, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1319,9 +1383,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2052488159}
   - component: {fileID: 2052488160}
+  - component: {fileID: 2052488161}
   m_Layer: 0
   m_Name: Point Light
-  m_TagString: Untagged
+  m_TagString: Sun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1334,7 +1399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052488158}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7, y: 1.92, z: -0.71}
+  m_LocalPosition: {x: 0.7, y: 0.07, z: -0.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 730315499}
@@ -1352,7 +1417,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9433962, g: 0.87288266, b: 0.40405837, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.25
   m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1401,6 +1466,19 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!135 &2052488161
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052488158}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4.37
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2126154644
 GameObject:
   m_ObjectHideFlags: 0
