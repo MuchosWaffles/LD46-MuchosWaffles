@@ -5,6 +5,9 @@ using UnityEngine;
 public class Seed : MonoBehaviour
 {
     //public int type; // Type of plant, to be looked up from a table?
+    public Transform planet;//planet duh...
+
+
     public bool randomized; //Set all public vars below to random range for a give type.
 
     public float germWaterReq; //How much water till sprout
@@ -24,8 +27,19 @@ public class Seed : MonoBehaviour
     bool  germinated = false; //Is germinated?
     bool  adult      = false; //Is done growing?
 
+    //Meshy Components
+    MeshRenderer MR;
+    MeshFilter MF;
+    Mesh mesh;
+    List<Vector3> Verts;
+    List<int> Tris;
     void Start()
     {
+        Verts = new List<Vector3>();
+        Tris = new List<int>();
+        MR = gameObject.GetComponent<MeshRenderer>();
+        MF = gameObject.GetComponent<MeshFilter>();
+        
         if (randomized) randomizeAll();
     }
 
@@ -37,6 +51,10 @@ public class Seed : MonoBehaviour
         CheckWater();
         CheckSun();
         CheckPollination();
+
+
+
+        FacePlanet();
     }
 
     void CheckPollination()
@@ -104,8 +122,48 @@ public class Seed : MonoBehaviour
         {
             //FIRST SPROUT
             //---------------------------
+            //initialize mesh
+            mesh = new Mesh();
+
+            //init scale dependant vars
+            float xs = transform.localScale.x * 0.25f;
+            float ys = transform.localScale.y;
+            float zs = transform.localScale.z * 0.25f;
+            //Set up first verts????? tri prisms? = 6 pts & 6 tris & 3 rects
+
+            //edge 1
+            Verts.Add(Vector3.zero);
+            Verts.Add(new Vector3(0, ys, 0));
+
+            //Edge2
+            Verts.Add(new Vector3(xs, 0, 0)) ;
+            Verts.Add(new Vector3(xs, ys, 0));
+
+            //Edge 3
+            Verts.Add(new Vector3(xs, 0, zs));
+            Verts.Add(new Vector3(xs, ys, zs));
 
 
+            //ADDING TRIANGLES
+            addTri(0, 1, 2);
+            addTri(1, 3, 2);
+            addTri(1, 0, 4);
+            addTri(4, 5, 1);
+            addTri(5, 4, 2);
+            //TOP - OPT?
+            addTri(5, 2, 3);
+            addTri(1, 5, 3);
+          
+
+
+            mesh.Clear();
+           
+            
+            mesh.vertices = Verts.ToArray();
+            mesh.triangles = Tris.ToArray();
+            mesh.RecalculateNormals();
+            MF.mesh = mesh;
+            
             germinated = true;
         }
     }
@@ -116,5 +174,20 @@ public class Seed : MonoBehaviour
         sunlightReq     = Random.Range(.5f,  2);
         gestationPeriod = Random.Range( 10, 25);
         damageRate      = Random.Range(  1, 10);
+    }
+    void FacePlanet()
+    {
+        Vector3 target = transform.position - planet.position;
+        target.Normalize();
+        //Rotate to face planet
+        transform.SetPositionAndRotation(
+            transform.position,
+            Quaternion.FromToRotation(transform.up, target) * transform.rotation
+            );
+    }
+
+    void addTri(int a, int b, int c)
+    {
+        Tris.Add(a); Tris.Add(b); ; Tris.Add(c);
     }
 }
