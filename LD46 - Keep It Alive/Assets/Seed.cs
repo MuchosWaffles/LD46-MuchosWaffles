@@ -436,7 +436,7 @@ public class Seed : MonoBehaviour
         sunlightReq     = Random.Range(1f,  4);
         gestationPeriod = Random.Range( 10, 25);
         damageRate      = Random.Range(  4, 10);
-        maxGrowths      = Random.Range(  2,  5);
+        maxGrowths      = Random.Range(  2,  4);
         type = Random.Range(0, treeColor.Length);
     }
     void FacePlanet()
