@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharController : MonoBehaviour
 {
+    public GameObject WaterSpout;
     Rigidbody rb;
     public Transform mesh;
     public Rigidbody planet;
@@ -47,6 +48,15 @@ public class CharController : MonoBehaviour
         //Move position perp to rotation, or tangent to planet, ie, move in transform.right positions instead of Vector3.right... Local vs Global / Subjective v Objective...
         rb.MovePosition(rb.position + (Input.GetAxis("Horizontal") * speed * transform.right) + (Input.GetAxis("Vertical") * speed * transform.forward));
 
-     
+
+      
+    }
+
+     void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            WaterSpout.SetActive(!WaterSpout.activeInHierarchy);
+        }
     }
 }
