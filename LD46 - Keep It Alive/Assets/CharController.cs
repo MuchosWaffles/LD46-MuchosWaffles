@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class CharController : MonoBehaviour
 {
+    public float PlayerWater = 1;
+    public Slider waterBar;
     public GameObject WaterSpout;
     Rigidbody rb;
     public Transform mesh;
@@ -61,5 +63,14 @@ public class CharController : MonoBehaviour
         {
             WaterSpout.SetActive(!WaterSpout.activeInHierarchy);
         }
+        if(WaterSpout.activeSelf)
+        {
+            PlayerWater -= Time.deltaTime / 20;
+        }
+        if (PlayerWater <= 0)
+        {
+            WaterSpout.SetActive(false);
+        }
+        waterBar.value = PlayerWater;
     }
 }

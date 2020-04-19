@@ -109,6 +109,7 @@ public class Shoppe : MonoBehaviour
                     }
 
                     Player.score += 20;
+                    Player.GetComponent<CharController>().PlayerWater += 0.2f;
                     newOrder(hit);
                 }
             }

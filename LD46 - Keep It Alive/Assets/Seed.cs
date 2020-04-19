@@ -32,7 +32,7 @@ public class Seed : MonoBehaviour
 
     float health     = 100; //Total health - drops when something is drained, heals only when all is good
     float water      =   0;//amount of water          0-100
-    float sun        =   0;//amount sun               0-100
+    float sun        =   100;//amount sun               0-100
     float size       =   0; //Amount of growth        0-100
     public int fruit = 0; //amount of fruit
 
@@ -86,7 +86,7 @@ public class Seed : MonoBehaviour
         CheckGerminate(); //good
         CheckGrowth();    //good
         CheckWater();     //good
-        CheckSun();       //good
+        //CheckSun();       //good
         CheckPollination();  //NOPE
         UpdateBars();    //good
         UpdateTrigger(); //good

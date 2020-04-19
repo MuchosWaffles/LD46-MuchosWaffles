@@ -19,9 +19,13 @@ public class HoseScript : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.CompareTag("Plant") && !other.isTrigger)
-        {
-            other.GetComponent<Seed>().increaseWater();
-        }
+        
+            if (other.gameObject.CompareTag("Plant") && !other.isTrigger)
+            {
+                if (gameObject.GetComponentInParent<CharController>().PlayerWater > 0)
+                {
+                    other.GetComponent<Seed>().increaseWater();
+                }
+            }
     }
 }
