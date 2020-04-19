@@ -57,7 +57,7 @@ public class Seed : MonoBehaviour
     {
         meshTrigger = gameObject.AddComponent<BoxCollider>();
         meshTrigger.isTrigger = true;
-
+        
 
         player = GameObject.FindGameObjectWithTag("Player");
         Physics.IgnoreCollision(player.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
@@ -95,8 +95,11 @@ public class Seed : MonoBehaviour
     void UpdateTrigger()
     {
         //Trigger surrounding mesh to see where seeds can be planted.
-        meshTrigger.size = mesh.bounds.size;
-        meshTrigger.center = mesh.bounds.center;
+        if (mesh != null)
+        {
+            meshTrigger.size = mesh.bounds.size;
+            meshTrigger.center = mesh.bounds.center;
+        }
     }
     void UpdateBars()
     {
@@ -480,12 +483,7 @@ public class Seed : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Water"))
-        {
-            water += 20* Time.deltaTime;
-            if (water > 100) water = 100;
-            
-        }
+       
 
         if (other.CompareTag("Sun"))
         {
@@ -493,6 +491,11 @@ public class Seed : MonoBehaviour
         }
     }
 
+    public void increaseWater()
+    {
+        water += 20 * Time.deltaTime;
+        if (water > 100) water = 100;
+    }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Sun"))
