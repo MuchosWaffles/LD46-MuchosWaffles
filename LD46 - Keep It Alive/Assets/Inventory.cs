@@ -6,7 +6,7 @@ public class Inventory : MonoBehaviour
 {
     public GameObject seedPreFab; //Seed Prefab to be instantiated
     public Transform placeLocation;//Where to place;
-    public GameObject light;
+    public GameObject Dlight;
     public Material[] types;//Array of materials
     public Image[] icons; //Inventory Slots
     public Text[] texts; //Icon Text
@@ -70,7 +70,7 @@ public class Inventory : MonoBehaviour
             GameObject child = GameObject.Instantiate(seedPreFab, placeLocation.position, placeLocation.rotation);
             Seed seedyboi = child.GetComponent<Seed>();
             seedyboi.planet = gameObject.GetComponent<CharController>().planet.transform;
-            seedyboi.DirLight = light;
+            seedyboi.DirLight = Dlight;
             seedyboi.type = selected;
             inventory[selected] -= 1;
         }
@@ -100,6 +100,16 @@ public class Inventory : MonoBehaviour
         for(int i =0; i < icons.Length; i++)
         {
             if (i != s) icons[i].rectTransform.localScale = new Vector3(1, 1, 1);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Plant"))
+        {
+            Seed seedyboi = other.GetComponent<Seed>();
+            inventory[seedyboi.type] += seedyboi.fruit;
+            seedyboi.fruit = 0;
         }
     }
 }

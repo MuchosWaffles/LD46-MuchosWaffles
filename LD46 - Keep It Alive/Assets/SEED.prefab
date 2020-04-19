@@ -1183,6 +1183,7 @@ MonoBehaviour:
   healthBar: {fileID: 6318293449529058635}
   waterBar: {fileID: 8182489623217849275}
   sunBar: {fileID: 2968731225859931290}
+  saladBar: {fileID: 8281853959397767915}
   DirLight: {fileID: 0}
   randomized: 1
   type: 0

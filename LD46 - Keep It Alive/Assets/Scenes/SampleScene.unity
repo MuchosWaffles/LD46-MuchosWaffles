@@ -1466,7 +1466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seedPreFab: {fileID: 8346783866110996388, guid: b1e1dc31f9abe834093ba28f23883321, type: 3}
   placeLocation: {fileID: 1998198269}
-  light: {fileID: 1265109870}
+  Dlight: {fileID: 1265109870}
   types:
   - {fileID: 2100000, guid: ca71a1f571da671468129b2c409b3190, type: 2}
   - {fileID: 2100000, guid: 166fd2f407d06704caf5b4d3a032d8cf, type: 2}

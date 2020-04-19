@@ -13,6 +13,7 @@ public class Seed : MonoBehaviour
     public Slider healthBar;
     public Slider waterBar;
     public Slider sunBar;
+    public Slider saladBar;
 
     GameObject player;
     public GameObject DirLight;
@@ -33,7 +34,8 @@ public class Seed : MonoBehaviour
     float water      =   0;//amount of water          0-100
     float sun        =   0;//amount sun               0-100
     float size       =   0; //Amount of growth        0-100
-    
+    public int fruit = 0; //amount of fruit
+
     float gestationTimer = 0;  //How long since pollination, checked against gestationPeriod
     float growthPeriod = 5; //How long till growths (seconds)
     float GrowthTimer = 0; //How long with water between growths 
@@ -106,6 +108,7 @@ public class Seed : MonoBehaviour
         healthBar.value = health / 100;
         waterBar.value =  water / 100;
         sunBar.value = sun / 100;
+        saladBar.value = ((float)fruit / 5)+ (gestationTimer/gestationPeriod)/5;
 
         if (health <= 0)
         {
@@ -120,24 +123,20 @@ public class Seed : MonoBehaviour
     void CheckPollination()
     {
 
-        if (!polinated)
+        if (!polinated && size>=1)
         {
-
-
-
-
+            polinated = true;
         }
 
-        if (polinated)
+        if (polinated && fruit <5 && water>0 && sun>0)
         {
             gestationTimer += Time.deltaTime;
             if (gestationTimer >= gestationPeriod)
             {
                 //POLINATION & SEEDMAKING
-
-
-
+                fruit+=1;
                 polinated = false;
+                gestationTimer = 0;
             }
 
         }
@@ -456,9 +455,9 @@ public class Seed : MonoBehaviour
     {
         //Fix Values
         germWaterReq    = Random.Range( 5, 15);
-        thirstRate      = Random.Range(1f,  4);
-        sunlightReq     = Random.Range(1f,  4);
-        gestationPeriod = Random.Range( 10, 25);
+        thirstRate      = Random.Range(.25f,  2);
+        sunlightReq     = Random.Range(.5f,  2);
+        gestationPeriod = Random.Range( 5, 10);
         damageRate      = Random.Range(  4, 10);
         maxGrowths      = Random.Range(  2,  4);
         
@@ -489,6 +488,8 @@ public class Seed : MonoBehaviour
         {
             touchingLantern = true;
         }
+
+
     }
 
     public void increaseWater()
