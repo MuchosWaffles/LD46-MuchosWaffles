@@ -32,27 +32,30 @@ public class CharController : MonoBehaviour
 
         //ROTATION
         //rotate in movement dir
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+
+        // mesh.Rotate(new Vector3(0, Input.GetAxis("Horizontal")* Time.deltaTime * speed*5, 0));
+        mesh.Rotate(new Vector3(0, Input.GetAxis("Mouse X") * Time.deltaTime * speed*10, 0));
+        /*if (Input.GetAxis("Horizontal") != 0 )
         {
             mesh.rotation =
                  Quaternion.Lerp(mesh.rotation, Quaternion.FromToRotation(
             mesh.forward,
-            ((Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward)).normalized) * mesh.rotation,
-            .15f
-        );
-            mesh.SetPositionAndRotation(mesh.position, Quaternion.FromToRotation(mesh.up,transform.up)*mesh.rotation);
-        }
+            (Input.GetAxis("Horizontal") * mesh.right)) * mesh.rotation,
+            .04f
+        );*/
 
-       
+
         //MOVEMENT
         //Move position perp to rotation, or tangent to planet, ie, move in transform.right positions instead of Vector3.right... Local vs Global / Subjective v Objective...
-        rb.MovePosition(rb.position + (Input.GetAxis("Horizontal") * speed * transform.right) + (Input.GetAxis("Vertical") * speed * transform.forward));
+        //rb.MovePosition(rb.position + (Input.GetAxis("Horizontal") * speed * transform.right) + (Input.GetAxis("Vertical") * speed * transform.forward));
+       rb.velocity = (Input.GetAxis("Horizontal") * speed* mesh.right) + (Input.GetAxis("Vertical") * speed * mesh.forward);
+       // rb.velocity =  (Input.GetAxis("Vertical") * speed * mesh.forward);
 
 
-      
+
     }
 
-     void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {

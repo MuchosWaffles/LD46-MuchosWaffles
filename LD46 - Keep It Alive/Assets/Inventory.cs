@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class Inventory : MonoBehaviour
 {
+    public TMP_Text scoreText;
+
+    public int score = 0;
     public GameObject seedPreFab; //Seed Prefab to be instantiated
     public Transform placeLocation;//Where to place;
     public GameObject Dlight;
     public Material[] types;//Array of materials
     public Image[] icons; //Inventory Slots
     public Text[] texts; //Icon Text
+
+    public float money;
 
     
     int selected = 0;//selected rn
@@ -32,6 +38,7 @@ public class Inventory : MonoBehaviour
         CheckScroll();//Good
         UpdateText(); //Good
         if(Input.GetKeyDown(KeyCode.E))CheckPlacement(); //Nope
+        scoreText.text = "Score: " + score.ToString();
     }
 
     void CheckPlacement()
@@ -45,7 +52,7 @@ public class Inventory : MonoBehaviour
         {
             for (int i = 0; i < hits.Length; i++)
             {
-                if (hits[i].CompareTag("Plant"))
+                if (hits[i].CompareTag("Plant") || hits[i].CompareTag("Building"))
                 {
                     canPlace = false;
                 }
