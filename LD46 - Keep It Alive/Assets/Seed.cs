@@ -77,7 +77,7 @@ public class Seed : MonoBehaviour
     void Update()
     {
         CheckGerminate(); //good
-        CheckGrowth();    //Meh, needs leaves
+        CheckGrowth();    //good
         CheckWater();     //good
         CheckSun();       //good
         CheckPollination();  //NOPE
@@ -105,15 +105,29 @@ public class Seed : MonoBehaviour
     }
     void CheckPollination()
     {
+
+        if (!polinated)
+        {
+
+
+
+
+        }
+
         if (polinated)
         {
             gestationTimer += Time.deltaTime;
             if (gestationTimer >= gestationPeriod)
             {
                 //POLINATION & SEEDMAKING
+
+
+
+                polinated = false;
             }
 
         }
+        
     }
     void CheckWater()
     {
@@ -358,7 +372,7 @@ public class Seed : MonoBehaviour
         List<Vector3> LVerts = new List<Vector3>();
         List<int> LTris = new List<int>();
         float leafSize = .5f;
-        for (int i = 0; i < size * 200; i++)
+        for (int i = 0; i < size * 150; i++)
         {
             Vector3 bl = new Vector3(Random.Range(mesh.bounds.min.x, mesh.bounds.max.x), Random.Range(mesh.bounds.min.y+1.25f, mesh.bounds.max.y), Random.Range(mesh.bounds.min.z, mesh.bounds.max.z));
             Vector3 br = new Vector3(bl.x + Random.Range(-leafSize, leafSize), bl.y + Random.Range(-leafSize, leafSize), bl.z + Random.Range(-leafSize, leafSize));
@@ -373,10 +387,6 @@ public class Seed : MonoBehaviour
         LMF.mesh = LeafyBois;
         LeafyBois.RecalculateNormals();
     }
-
-
-
-    
     void CheckGerminate()
     {
         if (!germinated && water >= germWaterReq)
@@ -437,7 +447,7 @@ public class Seed : MonoBehaviour
         gestationPeriod = Random.Range( 10, 25);
         damageRate      = Random.Range(  4, 10);
         maxGrowths      = Random.Range(  2,  4);
-        type = Random.Range(0, treeColor.Length);
+        type = Random.Range(0, treeColor.Length-1);
     }
     void FacePlanet()
     {
