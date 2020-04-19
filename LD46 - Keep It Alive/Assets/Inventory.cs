@@ -6,6 +6,7 @@ public class Inventory : MonoBehaviour
 {
     public Material[] types;//Array of materials
     public Image[] icons; //Inventory Slots
+    public Text[] texts; //Icon Text
     int selected = 0;//selected rn
 
     public int[] inventory;//inventory is a list of ints, how many of each obj i have rn. 1 red 2 whites 0 pinks 5 yellows, etc... matches up with Material length and index
@@ -16,16 +17,37 @@ public class Inventory : MonoBehaviour
         for(int i = 0; i < icons.Length; i++)
         {
             icons[i].material = types[i];
+
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckScroll();
-       
+        CheckScroll();//Good
+        UpdateText(); //Good
+        if(Input.GetKeyDown(KeyCode.E))CheckPlacement(); //Nope
     }
 
+    void CheckPlacement()
+    {
+        //Check if trying to place within bounds of another object
+        //Make triggers within bounds of other trees.
+        //If not, place a seed, which should have a set type, maybe randomized features? 
+        PlantSeed();
+    }
+
+    void PlantSeed()
+    {
+
+    }
+    void UpdateText()
+    {
+        for(int i = 0; i < texts.Length; i++)
+        {
+            texts[i].text = inventory[i].ToString();
+        }
+    }
     void CheckScroll()
     {
         

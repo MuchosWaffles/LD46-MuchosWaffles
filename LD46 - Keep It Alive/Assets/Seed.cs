@@ -44,6 +44,8 @@ public class Seed : MonoBehaviour
 
     bool touchingLantern = false;//lantern uses triggers instead of raycasts, so much be checked separate before removing sun...
 
+
+    BoxCollider meshTrigger;
     //Meshy Components
     MeshRenderer MR;
     MeshFilter MF;
@@ -53,7 +55,10 @@ public class Seed : MonoBehaviour
     List<int> Tris;
     void Start()
     {
-        
+        meshTrigger = gameObject.AddComponent<BoxCollider>();
+        meshTrigger.isTrigger = true;
+
+
         player = GameObject.FindGameObjectWithTag("Player");
         Physics.IgnoreCollision(player.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
         Verts = new List<Vector3>();
@@ -82,11 +87,17 @@ public class Seed : MonoBehaviour
         CheckSun();       //good
         CheckPollination();  //NOPE
         UpdateBars();    //good
-
+        UpdateTrigger(); //good
 
         FacePlanet(); //good
     }
 
+    void UpdateTrigger()
+    {
+        //Trigger surrounding mesh to see where seeds can be planted.
+        meshTrigger.size = mesh.bounds.size;
+        meshTrigger.center = mesh.bounds.center;
+    }
     void UpdateBars()
     {
         healthBar.value = health / 100;
@@ -447,7 +458,7 @@ public class Seed : MonoBehaviour
         gestationPeriod = Random.Range( 10, 25);
         damageRate      = Random.Range(  4, 10);
         maxGrowths      = Random.Range(  2,  4);
-        type = Random.Range(0, treeColor.Length-1);
+        type = Random.Range(0, treeColor.Length-1); //REMOVE LATER
     }
     void FacePlanet()
     {

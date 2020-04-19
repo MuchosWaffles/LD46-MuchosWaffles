@@ -15,7 +15,7 @@ public class CharController : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody>();
         rb.useGravity = false;
-       
+        WaterSpout.SetActive(false);
     }
 
    
@@ -54,7 +54,7 @@ public class CharController : MonoBehaviour
 
      void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             WaterSpout.SetActive(!WaterSpout.activeInHierarchy);
         }
