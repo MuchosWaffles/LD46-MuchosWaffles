@@ -1174,10 +1174,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treeColor:
   - {fileID: 2100000, guid: ca71a1f571da671468129b2c409b3190, type: 2}
-  - {fileID: 2100000, guid: c5193a0fb590b1b4fb280075ad1a255f, type: 2}
-  - {fileID: 2100000, guid: 9d9ac44778458ba48b4b0c96a108b034, type: 2}
-  - {fileID: 2100000, guid: 5c1bdd515de2d824fbfa3cae5954a85e, type: 2}
   - {fileID: 2100000, guid: 166fd2f407d06704caf5b4d3a032d8cf, type: 2}
+  - {fileID: 2100000, guid: 9d9ac44778458ba48b4b0c96a108b034, type: 2}
+  - {fileID: 2100000, guid: c5193a0fb590b1b4fb280075ad1a255f, type: 2}
+  - {fileID: 2100000, guid: 5c1bdd515de2d824fbfa3cae5954a85e, type: 2}
   Leaves: {fileID: 4098087632057784193}
   planet: {fileID: 0}
   healthBar: {fileID: 6318293449529058635}

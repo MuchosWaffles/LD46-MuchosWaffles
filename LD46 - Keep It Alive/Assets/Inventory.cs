@@ -65,10 +65,15 @@ public class Inventory : MonoBehaviour
 
     void PlantSeed()
     {
-        GameObject child = GameObject.Instantiate(seedPreFab, placeLocation.position,placeLocation.rotation);
-        Seed seedyboi = child.GetComponent<Seed>();
-        seedyboi.planet= gameObject.GetComponent<CharController>().planet.transform;
-        seedyboi.DirLight = light;
+        if (inventory[selected] > 0)
+        {
+            GameObject child = GameObject.Instantiate(seedPreFab, placeLocation.position, placeLocation.rotation);
+            Seed seedyboi = child.GetComponent<Seed>();
+            seedyboi.planet = gameObject.GetComponent<CharController>().planet.transform;
+            seedyboi.DirLight = light;
+            seedyboi.type = selected;
+            inventory[selected] -= 1;
+        }
         
     }
     void UpdateText()

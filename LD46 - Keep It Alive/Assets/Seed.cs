@@ -170,7 +170,7 @@ public class Seed : MonoBehaviour
         {
             //HANDLE SUN by checking if light is on it (and how much)
             //Use collider for point lights... raycast for directional
-            if(!Physics.Raycast(transform.position + transform.up, dirLightDir) || touchingLantern)
+            if(!Physics.Raycast(transform.position + transform.up*5, dirLightDir) || touchingLantern)
             {
                 sun += Time.deltaTime * 20;
                 if (sun > 100) sun = 100;
@@ -455,13 +455,13 @@ public class Seed : MonoBehaviour
     void randomizeAll()
     {
         //Fix Values
-        germWaterReq    = Random.Range( 10, 30);
+        germWaterReq    = Random.Range( 5, 15);
         thirstRate      = Random.Range(1f,  4);
         sunlightReq     = Random.Range(1f,  4);
         gestationPeriod = Random.Range( 10, 25);
         damageRate      = Random.Range(  4, 10);
         maxGrowths      = Random.Range(  2,  4);
-        type = Random.Range(0, treeColor.Length-1); //REMOVE LATER
+        
     }
     void FacePlanet()
     {
